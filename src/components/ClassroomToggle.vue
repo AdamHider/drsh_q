@@ -1,5 +1,5 @@
 <template  withBackground="true">
-    <q-chip class="transparent"
+    <q-chip class="transparent no-shadow"
         clickable 
         icon-right="autorenew"
         text-color="white"
@@ -9,7 +9,7 @@
           <q-img :src="`${CONFIG.API_HOST}${classroom.active?.introimage}`"/>
         </q-avatar>
         <div class="ellipsis">
-            {{classroom.active?.title}}
+            <b>{{classroom.active?.title}}</b>
             <q-tooltip>{{classroom.active?.title}}</q-tooltip>
         </div>
     </q-chip>

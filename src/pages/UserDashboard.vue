@@ -7,110 +7,122 @@
         <q-btn flat round dense icon="settings" class="q-mr-sm"  to="/settings"/>
       </q-toolbar>
     </q-header>
-    <q-page class="flex justify-center items-end full-height full-width text-center">
-        <q-container class="relative text-center mb-n12">
-            <v-sheet color="transparent">
-                <v-progress-linear 
+    <q-page class="flex justify-center items-end  text-center full-width">
+        <q-card class="transparent no-shadow full-width" style="margin-bottom: -60px; position: relative; z-index: 1;">
+            <q-card-section>
+                <q-linear-progress
                     color="white"
                     :model-value="user.active.data.profile?.level.percentage" 
-                    :height="20" 
-                    rounded="lg"
-                ></v-progress-linear>
-                <v-container class="pt-2 pb-2 text-white">
-                    <v-row>
-                        <v-col cols="6" class="pl-0 pr-0 text-left">
-                            <b>Level {{user.active.data.profile?.level.id}}</b>
-                        </v-col>
-                        <v-col cols="6" class="pl-0 pr-0 text-right">
-                            <b>{{user.active.data.profile?.total_points}}/{{user.active.data.profile?.level.points_to}}</b>
-                        </v-col>
-                    </v-row>
-                </v-container>
-            </v-sheet>
-            <v-img
-                class="ma-auto"
-                width="170"
-                :src="`${CONFIG.API_HOST}/images/dershane/hero_${user.active.data.profile?.hero}_hello.png`"
-            >
-            </v-img>
-        </q-container>
-        <q-card color="white" class="relative text-center pl-2 pr-2 pt-6 pb-6 rounded-t-xl">
-            <h2>{{user.active.data.name}}</h2>
-            <v-card class="mt-4 mb-4 text-left"  rounded="lg">
-                <v-row align="center" no-gutters class="pa-2">
-                    <v-col cols="2">
-                        <v-avatar color="grey-lighten-1">
-                            <v-img :src="`${CONFIG.API_HOST}${classroom.active?.introimage}`" cover></v-img>
-                        </v-avatar>
-                    </v-col>
-                    <v-col class="text-left" cols="8">
-                        <h4>{{classroom.active?.title}}</h4>
-                        <p class="text-grey">
-                            Current classroom
-                        </p>
-                    </v-col>
-                    <v-col class="text-medium-emphasis text-truncate" cols="2">
-                        <v-btn icon="mdi-account-convert-outline" to="/user-startup" variant="text"></v-btn>
-                    </v-col>
-                </v-row>
-            </v-card>
-            <v-btn
+                    size="20px"
+                    dark stripe rounded 
+                ></q-linear-progress>
+                <div class="row q-ma-sm text-white">
+                    <div class="col text-left">
+                        <b>Level {{user.active.data.profile?.level.id}}</b>
+                    </div>
+                    <div class="col  text-right">
+                        <b>{{user.active.data.profile?.total_points}}/{{user.active.data.profile?.level.points_to}}</b>
+                    </div>
+                </div>
+            </q-card-section>
+            <q-card-section>
+                <q-img
+                    :src="`${CONFIG.API_HOST}/images/dershane/hero_${user.active.data.profile?.hero}_hello.png`"
+                    style="max-width: 250px; width: 170px;"
+                />
+            </q-card-section>
+        </q-card>
+        <q-card color="white" class="relative text-center q-pl-sm q-pr-sm q-pt-md q-pb-md rounded-borders rounded-b-0" style="padding-top: 30px;">
+            <q-card-section>
+                <div class="text-h5"><b>{{user.active.data.name}}</b></div>
+            </q-card-section>
+            
+            <q-card-section class="q-px-none">
+                <q-card >
+                    <q-card-section >
+                        <q-item :active="active" class="q-pa-none">
+                            <q-item-section avatar>
+                                <q-avatar>
+                                    <img :src="`${CONFIG.API_HOST}${classroom.active?.introimage}`" />
+                                </q-avatar>
+                            </q-item-section>
+                            <q-item-section class="text-left">
+                                <div class="text-h6">{{classroom.active?.title}}</div>
+                                <div class="text-grey">Current classroom</div>
+                            </q-item-section>
+                            <q-item-section side>
+                                <q-btn
+                                flat 
+                                to="/user-startup"
+                                icon="autorenew" />
+                            </q-item-section>
+                        </q-item>
+                    </q-card-section>
+                </q-card>
+            </q-card-section>
+            <q-btn
                 block
-                rounded="lg"
                 to="user-edit"
+                class="full-width"
                 append-icon="mdi-account-edit"
             >
                 <label>Edit profile</label>
-            </v-btn>
-            <v-container class="mt-4 mb-4 pa-0">
-                <v-row >
-                    <v-col cols="6">
-                        <v-card class="pa-2 pv-2 text-left" rounded="lg">
-                            <h3>{{user.active.data.profile?.total_exercises}}</h3>
-                            <p class="text-grey">Exercises</p>
-                            <v-tooltip activator="parent" location="top">
+            </q-btn>
+            <div class="q-mt-md q-mb-md row q-col-gutter-sm">
+                <div class="col-6">
+                    <q-card class="text-left" rounded="lg">
+                        <q-card-section>
+                            <div class="text-h5">{{user.active.data.profile?.total_exercises}}</div>
+                            <div class="text-caption text-grey">Exercises</div>
+                            <q-tooltip activator="parent" location="top">
                                 Total exercises that you have done
-                            </v-tooltip>
-                        </v-card>
-                    </v-col>
-                    <v-col cols="6">
-                        <v-card class="pa-2 text-left" rounded="lg">
-                            <h3>{{user.active.data.profile?.total_points}}</h3>
-                            <p class="text-grey">Points</p>
-                            <v-tooltip activator="parent" location="top">
+                            </q-tooltip>
+                        </q-card-section>
+                    </q-card>
+                </div>
+                <div class="col-6">
+                    <q-card class="text-left" rounded="lg">
+                        <q-card-section>
+                            <div class="text-h5">{{user.active.data.profile?.total_points}}</div>
+                            <div class="text-caption text-grey">Points</div>
+                            <q-tooltip activator="parent" location="top">
                                 Total points that you have scored
-                            </v-tooltip>
-                        </v-card>
-                    </v-col>
-                    <v-col cols="6">
-                        <v-card class="pa-2 text-left" rounded="lg">
-                            <h3>{{user.active.data.profile?.total_classrooms}}</h3>
-                            <p class="text-grey">Classrooms</p>
-                            <v-tooltip activator="parent" location="top">
+                            </q-tooltip>
+                        </q-card-section>
+                    </q-card>
+                </div>
+                <div class="col-6">
+                    <q-card class="text-left" rounded="lg">
+                        <q-card-section>
+                            <div class="text-h5">{{user.active.data.profile?.total_classrooms}}</div>
+                            <div class="text-caption text-grey">Classrooms</div>
+                            <q-tooltip activator="parent" location="top">
                                 Total classrooms that you are member of
-                            </v-tooltip>
-                        </v-card>
-                    </v-col>
-                    <v-col cols="6">
-                        <v-card class="pa-2 text-left" rounded="lg">
-                            <h3>{{user.active.data.profile?.total_achievements}}</h3>
-                            <p class="text-grey">Achievements</p>
-                            <v-tooltip activator="parent" location="top">
+                            </q-tooltip>
+                        </q-card-section>
+                    </q-card>
+                </div>
+                <div class="col-6">
+                    <q-card class="text-left" rounded="lg">
+                        <q-card-section>
+                            <div class="text-h5">{{user.active.data.profile?.total_achievements}}</div>
+                            <div class="text-caption text-grey">Achievements</div>
+                            <q-tooltip activator="parent" location="top">
                                 Total achievements that you have gained
-                            </v-tooltip>
-                        </v-card>
-                    </v-col>
-                </v-row>
-            </v-container>
-            <v-btn
+                            </q-tooltip>
+                        </q-card-section>
+                    </q-card>
+                </div>
+            </div>
+            <q-btn
                 block
-                rounded="lg"
+                class="full-width"
                 color="primary"
                 @click="exitUser(); "
                 append-icon="mdi-logout-variant"
             >
                 <label>Sign out</label>
-            </v-btn>
+            </q-btn>
         </q-card>
     </q-page>
 </template>

@@ -4,29 +4,8 @@
     <q-page-container>
       <router-view />
     </q-page-container>
-    <q-footer bordered class="bg-grey-8 text-white">
-      <q-tabs v-if="bottomBar">
-          <q-route-tab
-              icon="home"
-              to="/home"
-              exact
-          />
-          <q-route-tab
-              icon="classroom"
-              to="/classroom"
-              exact
-          />
-          <q-route-tab
-              icon="notifications"
-              to="/notifications"
-              exact
-          />
-          <q-route-tab
-              icon="alarm"
-              to="/user-dashboard"
-              exact
-          />
-      </q-tabs>
+    <q-footer bordered class="bg-white text-primary ">
+      <BottomBar v-if="bottomBar"/>
     </q-footer>
   </q-layout>
 </template>
@@ -34,6 +13,7 @@
 <script setup>
 import { ref, watch } from 'vue'
 import AppBackground from 'components/AppBackground.vue'
+import BottomBar from 'components/BottomBar.vue'
 import { useRoute } from "vue-router";
 
 const route = useRoute();

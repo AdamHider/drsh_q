@@ -6,7 +6,7 @@
             exact
         />
         <q-route-tab
-            icon="classroom"
+            icon="group"
             to="/classroom"
             exact
         />
@@ -16,7 +16,7 @@
             exact
         />
         <q-route-tab
-            icon="alarm"
+            icon="person"
             to="/user-dashboard"
             exact
         />

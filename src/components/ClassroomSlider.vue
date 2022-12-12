@@ -1,6 +1,6 @@
 <template>
-  <v-sheet class="text-center" v-if="user.active.data.id"  color="transparent">
     <swiper
+      v-if="user.active.data.id"
       ref="classroomSlider"
       :modules="[Navigation, Pagination, Scrollbar, A11y]"
       :slides-per-view="props.slidesPerView"
@@ -11,19 +11,28 @@
       @slideChange="onSlideChange"
     >
       <swiper-slide v-for="(classroomItem, index) in classroom.list" :key="index" :class="'text-center'" @click="select(index)">
-        <v-card class="ma-3">
-          <v-img class="align-end text-white pa-3" cover :src="(CONFIG.API_HOST+classroomItem.fulltext_image)" :height="props.slideHeight">
-            <v-card-title>{{classroomItem.title}}</v-card-title>
-            <v-card-subtitle class="pt-4">{{classroomItem.code}}</v-card-subtitle>
-          </v-img>
-        </v-card>
+        <q-card class="ma-3">
+            <q-img 
+              fit="cover" 
+              :src="(CONFIG.API_HOST+classroomItem.fulltext_image)"  
+              :height="props.slideHeight"
+              :style="`height: ${props.slideHeight}px;`"
+              >
+              <div class="absolute-bottom text-center text-white">
+                <div class="text-h6">{{classroomItem.title}}</div>
+                <div class="subtitle">{{classroomItem.code}}</div>
+              </div>
+            </q-img>
+        </q-card>
       </swiper-slide>
       <swiper-slide :class="'text-center'" @click="select(false)">
-        <v-card class="ma-3">
-          <v-img class="align-center pa-3" cover :width="(props.slideHeight*2)" :height="props.slideHeight">
-            <v-icon icon="mdi-plus" size="x-large"></v-icon>
-          </v-img>
-        </v-card>
+        <q-card class="ma-3">
+          <q-card-section>
+            <q-img class="align-center pa-3" :width="(props.slideHeight*2)" :height="props.slideHeight">
+              <q-icon name="plus"></q-icon>
+            </q-img>
+          </q-card-section>
+        </q-card>
       </swiper-slide>
     </swiper>
     <v-btn v-if="props.withButton" rounded="lg" @click="select()" :disabled="(activeItem.code == user.active.authorization.classroom_code)">
@@ -34,7 +43,6 @@
         {{activeItem.title}}
       </template>
     </v-btn>
-  </v-sheet>
 </template>
 <script setup>
 import { routerPush, router } from '../router/index'
@@ -110,8 +118,9 @@ const onSlideChange = (swiper) => {
 </script>
 
 <style>
-.swiper-slide {
-  transition: 0.5s all ease;
+.swiper-slide.swiper-slide-active,
+.swiper-slide.swiper-slide-duplicate-active{
+      transform: scale(1) !important;
 }
 .swiper-slide:not(.swiper-slide-active) {
   filter: grayscale(0.8) opacity(0.5);
