@@ -7,7 +7,7 @@
         <q-btn flat round dense icon="settings" class="q-mr-sm"  to="/settings"/>
       </q-toolbar>
     </q-header>
-    <q-page class="flex justify-center items-end  text-center full-width">
+    <q-page class="flex justify-center content-end  text-center full-width">
         <q-card class="transparent no-shadow full-width" style="margin-bottom: -60px; position: relative; z-index: 1;">
             <q-card-section>
                 <q-linear-progress

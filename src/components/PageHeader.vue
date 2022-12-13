@@ -1,7 +1,7 @@
 <template>
     <div :class="`ma-4 text-center text-${textColor}`">
-        <h2 class="mb-2">{{title}}</h2>
-        <h4 class="mt-2">{{subtitle}}</h4>
+        <h4 class="mb-2">{{title}}</h4>
+        <h6 class="mt-2">{{subtitle}}</h6>
     </div>
 </template>
 

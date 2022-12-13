@@ -11,11 +11,10 @@
       @slideChange="onSlideChange"
     >
       <swiper-slide v-for="(classroomItem, index) in classroom.list" :key="index" :class="'text-center'" @click="select(index)">
-        <q-card class="ma-3">
+        <q-card class="q-ma-md">
             <q-img 
               fit="cover" 
               :src="(CONFIG.API_HOST+classroomItem.fulltext_image)"  
-              :height="props.slideHeight"
               :style="`height: ${props.slideHeight}px;`"
               >
               <div class="absolute-bottom text-center text-white">
@@ -26,23 +25,22 @@
         </q-card>
       </swiper-slide>
       <swiper-slide :class="'text-center'" @click="select(false)">
-        <q-card class="ma-3">
-          <q-card-section>
-            <q-img class="align-center pa-3" :width="(props.slideHeight*2)" :height="props.slideHeight">
+        <q-card class="q-ma-md">
+            <q-img class="align-center pa-3"
+              :style="`height: ${props.slideHeight}px;`">
               <q-icon name="plus"></q-icon>
             </q-img>
-          </q-card-section>
         </q-card>
       </swiper-slide>
     </swiper>
-    <v-btn v-if="props.withButton" rounded="lg" @click="select()" :disabled="(activeItem.code == user.active.authorization.classroom_code)">
+    <q-btn v-if="props.withButton" rounded="lg" @click="select()" :disabled="(activeItem.code == user.active.authorization.classroom_code)">
       <template v-if="(activeItem.id !== 0)">
         Enter {{activeItem.title}}
       </template>
       <template v-else>
         {{activeItem.title}}
       </template>
-    </v-btn>
+    </q-btn>
 </template>
 <script setup>
 import { routerPush, router } from '../router/index'
